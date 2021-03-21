@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        try {
+            $request->validate([
+                $this->username() => 'required|string',
+                'password' => 'required|string',
+            ], []);
+        } catch (ValidationException $exception) {
+            session()->flash('error-login', __('Las credenciales son incorrectas'));
+            return back();
+        }
+
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        session()->flash('error-login', 'Las credenciales son incorrectas');
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 }

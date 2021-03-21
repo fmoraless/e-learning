@@ -1,4 +1,6 @@
-@include('partials.form_errors')
+@if(!session('error-login'))
+    @include('partials.form_errors')
+@endif
 
 <form class="intro-newslatter text-center" action="{{ route('register') }}" method="POST">
     @csrf

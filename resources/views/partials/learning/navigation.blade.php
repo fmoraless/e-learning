@@ -12,7 +12,8 @@
             </div>
             <div class="col-lg-9 col-md-9">
                 @guest
-                    <a href="" class="site-btn header-btn">{{ __("Acceder") }}</a>
+                    <a href="#" id="login-button" class="site-btn header-btn">{{ __("Acceder") }}</a>
+                    @include('partials.learning.modals.login')
                 @else
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -40,3 +41,15 @@
     </div>
 </header>
 <!-- Header section end -->
+
+@push("js")
+    <script>
+        @if(session('error-login'))
+        $("#login-modal").modal();
+        @endif
+        jQuery("#login-button").on("click", function (e) {
+        e.preventDefault();
+        $("#login-modal").modal();
+        })
+    </script>
+@endpush
