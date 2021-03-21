@@ -11,7 +11,21 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-9">
-                <a href="" class="site-btn header-btn">Login</a>
+                @guest
+                    <a href="" class="site-btn header-btn">{{ __("Acceder") }}</a>
+                @else
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+                       class="site-btn header-btn"
+                    >
+                        {{ __("Salir") }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
                 <nav class="main-menu">
                     <ul>
                         <li><a href="{{ route('welcome') }}">{{ __("Inicio") }}</a></li>
