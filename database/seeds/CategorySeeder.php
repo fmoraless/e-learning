@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             "Laravel" => "F35144",
-            "Node.js" => "8DBC58",
+            "Nodejs" => "8DBC58",
             "Vuejs" => "41B881",
             "React" => "0CC1E9",
             "Deno" => "0098B6",
