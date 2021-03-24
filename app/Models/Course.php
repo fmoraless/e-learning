@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -68,5 +69,14 @@ class Course extends Model
 
     public function imagePath() {
         return sprintf('%s/%s', 'storage/courses', $this->picture);
+    }
+
+    public function scopeFiltered(Builder $builder){
+        $builder->with("teacher");
+        $builder->where("status", Course::PUBLISHED);
+        if (session()->has('search[courses]')) {
+            $builder->where('title', 'LIKE', '%' . session('search[courses]') . '%');
+        }
+        return $builder->paginate();
     }
 }
