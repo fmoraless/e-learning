@@ -23,7 +23,7 @@ Route::group(['prefix' => 'courses', 'as' => 'courses.' ], function() {
     Route::post('/search', 'CourseController@search')->name('search');
 });
 
-Route::group(['prefix' => 'teacher', 'as' => 'teacher.' ], function() {
+Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teacher']], function() {
     Route::get('/', 'TeacherController@index')->name('index');
     //Route::post('/search', 'CourseController@search')->name('search');
 });
