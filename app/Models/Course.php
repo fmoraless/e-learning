@@ -69,7 +69,7 @@ class Course extends Model
     }
 
     public function imagePath() {
-        return sprintf('%s/%s', 'storage/courses', $this->picture);
+        return sprintf('%s/%s', '/storage/courses', $this->picture);
     }
 
     public function scopeFiltered(Builder $builder){
@@ -79,5 +79,12 @@ class Course extends Model
             $builder->where('title', 'LIKE', '%' . session('search[courses]') . '%');
         }
         return $builder->paginate();
+    }
+
+    public function scopeForTeacher(Builder $builder){
+        return $builder
+            ->withCount('students')
+            ->where("user_id",auth()->id())
+            ->paginate();
     }
 }

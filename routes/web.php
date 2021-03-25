@@ -25,7 +25,9 @@ Route::group(['prefix' => 'courses', 'as' => 'courses.' ], function() {
 
 Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teacher']], function() {
     Route::get('/', 'TeacherController@index')->name('index');
-    //Route::post('/search', 'CourseController@search')->name('search');
+    Route::get('/courses', 'TeacherController@courses')->name('courses');
+    Route::get('/courses/create', 'TeacherController@createCourse')
+        ->name('courses.create');
 });
 
 /*Route::get('/phpinfo', function () {
