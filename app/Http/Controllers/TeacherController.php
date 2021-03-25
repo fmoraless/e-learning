@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class TeacherController extends Controller
 {
     public function index() {
-        dd("Teacher index");
+        return view('teacher.index');
     }
 }
