@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $students
  * @property-read int|null $students_count
  * @property-read \App\Models\User $teacher
+ * @method static Builder|Course filtered()
  */
 class Course extends Model
 {
