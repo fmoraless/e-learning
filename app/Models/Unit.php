@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -41,4 +42,15 @@ class Unit extends Model
     const ZIP = 'ZIP';
     const VIDEO = 'VIDEO';
     const SECTION = 'SECTION';
+
+    public function course() {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function scopeForTeacher(Builder $builder){
+        return $builder
+            ->with('course')
+            ->where("user_id",auth()->id())
+            ->paginate();
+    }
 }

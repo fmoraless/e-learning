@@ -28,6 +28,9 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::get('/courses', 'TeacherController@courses')->name('courses');
     Route::get('/courses/create', 'TeacherController@createCourse')
         ->name('courses.create');
+    Route::get('/units', 'TeacherController@units')->name('units');
+    Route::get('/units/create', 'TeacherController@createUnit')
+        ->name('units.create');
 });
 
 /*Route::get('/phpinfo', function () {

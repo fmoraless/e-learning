@@ -8,7 +8,7 @@
                 <a class="nav-link brand-text" href="{{ route('teacher.courses') }}">{{ __("Cursos") }}</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link brand-text" href="#">{{ __("Unidades") }}</a>
+                <a class="nav-link brand-text" href="{{ route('teacher.units') }}">{{ __("Unidades") }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link brand-text" href="#">{{ __("Cupones") }}</a>
