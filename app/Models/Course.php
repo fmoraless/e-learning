@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read int|null $students_count
  * @property-read \App\Models\User $teacher
  * @method static Builder|Course filtered()
+ * @method static Builder|Course forTeacher()
  */
 class Course extends Model
 {

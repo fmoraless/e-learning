@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Unit whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Course $course
+ * @method static Builder|Unit forTeacher()
  */
 class Unit extends Model
 {
