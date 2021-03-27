@@ -40,7 +40,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::get('/units', 'TeacherController@units')->name('units');
     Route::get('/units/create', 'TeacherController@createUnit')
         ->name('units.create');
-    Route::get('/units/store', 'TeacherController@storeUnit')
+    Route::post('/units/store', 'TeacherController@storeUnit')
         ->name('units.store');
 });
 
