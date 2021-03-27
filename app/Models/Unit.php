@@ -55,4 +55,10 @@ class Unit extends Model
             ->where("user_id",auth()->id())
             ->paginate();
     }
+
+    public static function unitTypes() {
+        return [
+          self::ZIP, self::VIDEO, self::SECTION
+        ];
+    }
 }

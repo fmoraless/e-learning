@@ -135,6 +135,13 @@ return [
         'email' => [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
+
+        'content' => [
+            'min' => 'El campo :attribute debe contener al menos :min caracteres',
+        ],
+        'unit_time' => [
+            'numeric' => 'El campo :attribute debe ser numérico.',
+        ],
     ],
 
     /*
@@ -181,5 +188,9 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+
+        'unit_time'             => 'duración de la unidad',
+        'unit_type'             => 'tipo de unidad',
+        'file'                  => 'archivo',
     ],
 ];
