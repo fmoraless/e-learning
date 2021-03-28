@@ -9,6 +9,44 @@
         </div>
     </div>
     <div class="table-responsive">
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr class="text-center">
+                    <th>{{ __("Título") }}</th>
+                    <th>{{ __("Curso") }}</th>
+                    <th>{{ __("Tipo") }}</th>
+                    <th>{{ __("Duración") }}</th>
+                    <th>{{ __("Alta") }}</th>
+                    <th>{{ __("Edición") }}</th>
+                    <th>{{ __("Acciones") }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @forelse($units as $unit)
+                        <tr class="text-center">
+                            <td>{{ $unit->title }}</td>
+                            <td>{{ $unit->course->title }}</td>
+                            <td>{{ $unit->unit_type }}</td>
+                            <td>{{ $unit->unit_time }}</td>
+                            <td>{{ $unit->created_at->format("d/m/Y H:i") }}</td>
+                            <td>{{ $unit->updated_at->format("d/m/Y") }}</td>
+                            <td>{{ __("TBD") }}</td>
+                        </tr>
+                    @empty
+                        <tr class="text-center">
+                            <td colspan="7">
+                                <div class="empty-results">
+                                    {!! __("No tienes ninguna unidad todavía: :link", ["link" => "<a href='".route('teacher.units.create')."'>Crear</a>"]) !!}
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+
         <div class="row">
             @if(count($units))
                 {{ $units->links() }}
