@@ -41,9 +41,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Unit extends Model
 {
+    protected $fillable = [
+        "title", "content", "course_id", "user_id",
+        "unit_type", "unit_time", "file", "order", "free"
+    ];
+
     const ZIP = 'ZIP';
     const VIDEO = 'VIDEO';
     const SECTION = 'SECTION';
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::saving(function ($table) {
+            $table->user_id = auth()->id();
+        });
+
+        self::creating( function ($table) {
+            $last = Unit::whereCourseId(request("course_id"))
+                ->orderBy('order', 'desc')
+                ->take(1)
+                ->first();
+            $table->order = $last ? $last->order += 1:1;
+        });
+    }
 
     public function course() {
         return $this->belongsTo(Course::class);
