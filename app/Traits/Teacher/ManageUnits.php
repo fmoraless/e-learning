@@ -27,14 +27,7 @@ trait ManageUnits {
         if ($request->hasFile("file")){
             $file = Uploader::uploadFile("file", "units");
         }
-        $unit = Unit::create([
-           "course_id" => $request->input("course_id"),
-           "title" => $request->input("title"),
-           "content" => $request->input("content"),
-           "file" => $file,
-           "unit_type" => $request->input("unit_type"),
-           "unit_time" => $request->input("unit_time"),
-        ]);
+        $unit = Unit::create($this->unitInput($file));
 
         session()->flash(
             "message", [
@@ -67,14 +60,7 @@ trait ManageUnits {
             }
             $file = Uploader::uploadFile("file", "units");
         }
-        $unit->fill([
-            "course_id" => $request->input("course_id"),
-            "title" => $request->input("title"),
-            "content" => $request->input("content"),
-            "file" => $file,
-            "unit_type" => $request->input("unit_type"),
-            "unit_time" => $request->input("unit_time"),
-        ])->save();
+        $unit->fill($this->unitInput($file))->save();
 
         session()->flash(
             "message", [
@@ -83,5 +69,17 @@ trait ManageUnits {
             ]
         );
         return redirect(route('teacher.units'));
+    }
+
+    public function unitInput(string $file = null): array {
+        return [
+            "course_id" => request("course_id"),
+            "title" => request("title"),
+            "content" => request("content"),
+            "file" => $file,
+            "unit_type" => request("unit_type"),
+            "unit_time" => request("unit_time"),
+            "free" => request("free")
+        ];
     }
 }
