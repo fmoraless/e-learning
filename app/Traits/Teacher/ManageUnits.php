@@ -44,4 +44,44 @@ trait ManageUnits {
         );
         return redirect(route('teacher.units'));
     }
+
+    public function editUnit(Unit $unit) {
+        //dd($unit);
+        $title = __("Editar unidad :unit", ["unit" => $unit->title]);
+        $textButton = __("Actualizar unidad");
+        $courses = Course::forTeacher();
+        $options = ['route' => [
+            'teacher.units.update', ['unit' => $unit]], 'files' => true
+        ];
+        $update = true;
+        return view(
+            'teacher.units.edit',
+            compact('title', 'courses', 'unit', 'options', 'textButton', 'update'));
+    }
+
+    public function updateUnit(UnitRequest $request, Unit $unit) {
+        $file = $unit->file;
+        if ($request->hasFile('file')){
+            if ($unit->file){
+                Uploader::removeFile("units", $unit->file);
+            }
+            $file = Uploader::uploadFile("file", "units");
+        }
+        $unit->fill([
+            "course_id" => $request->input("course_id"),
+            "title" => $request->input("title"),
+            "content" => $request->input("content"),
+            "file" => $file,
+            "unit_type" => $request->input("unit_type"),
+            "unit_time" => $request->input("unit_time"),
+        ])->save();
+
+        session()->flash(
+            "message", [
+                "success",
+                __("Unidad actualizada satisfactoriamente")
+            ]
+        );
+        return redirect(route('teacher.units'));
+    }
 }

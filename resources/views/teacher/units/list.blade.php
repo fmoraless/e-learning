@@ -31,7 +31,13 @@
                             <td>{{ $unit->unit_time }}</td>
                             <td>{{ $unit->created_at->format("d/m/Y H:i") }}</td>
                             <td>{{ $unit->updated_at->format("d/m/Y") }}</td>
-                            <td>{{ __("TBD") }}</td>
+                            <td>
+                                <a
+                                    class="btn btn-outline-dark"
+                                    href="{{ route('teacher.units.edit', ["unit" => $unit]) }}">
+                                    <i class="fa fa-pencil-square"></i>{{ __(" Editar") }}
+                                </a>
+                            </td>
                         </tr>
                     @empty
                         <tr class="text-center">

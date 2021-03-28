@@ -43,6 +43,23 @@ class UnitRequest extends FormRequest
                     'unit_time' => 'required_if:unit_type,'.Unit::VIDEO,
                 ];
             }
+            case 'PUT':
+            {
+                return [
+                    'title' => 'required|min:6|max:200',
+                    'content' => 'required_if:unit_type,'.Unit::VIDEO,
+                    'course_id' => [
+                        'required',
+                        Rule::exists('courses', 'id')
+                    ],
+                    'unit_type' => [
+                        'required',
+                        Rule::in(Unit::unitTypes())
+                    ],
+                    'file' => 'required_if:unit_type,'.Unit::ZIP.'|sometimes|file',
+                    'unit_time' => 'required_if:unit_type,'.Unit::VIDEO,
+                ];
+            }
             default:
             {
                 return [];
