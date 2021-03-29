@@ -7,6 +7,9 @@
     <meta name="keywords" content="webuni, education, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {{-- ADD CSRF TOKEN FOR AJAX OPERATIONS --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="shortcut icon"/>
 
@@ -50,6 +53,23 @@
 <script src="/js/circle-progress.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/main.js"></script>
+
+<script src="/js/jConfirm.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        $.jConfirm.defaults.question = '{{ __("¿Estás seguro?") }}';
+        $.jConfirm.defaults.confirm_text = '{{ __("Sí") }}';
+        $.jConfirm.defaults.deny_text = '{{ __("No") }}';
+        $.jConfirm.defaults.position = 'top';
+        $.jConfirm.defaults.theme = 'black';
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+</script>
+<script src="/js/functions.js"></script>
 
 @stack('js')
 </body>
