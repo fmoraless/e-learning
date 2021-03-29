@@ -71,6 +71,28 @@ trait ManageUnits {
         return redirect(route('teacher.units'));
     }
 
+    public function destroyUnit(Unit $unit) {
+        try {
+            if (request()->ajax()) {
+                if ($unit->file){
+                    Uploader::removeFile("units", $unit->file);
+                }
+                $unit->delete();
+                session()->flash("message", ["success", __("La unidad :id del curso :course ha sido eliminada correctamente", [
+                    "id" => $unit->id,
+                    "course" => $unit->course->title
+                ])]);
+            }else{
+                abort(401);
+            }
+
+            /**/
+        } catch (\Exception $exception) {
+            session()->flash("message", ["danger", $exception->getMessage()]);
+           //return response()->json($exception->getMessage());
+        }
+    }
+
     public function unitInput(string $file = null): array {
         return [
             "course_id" => request("course_id"),

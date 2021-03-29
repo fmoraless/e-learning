@@ -1,3 +1,6 @@
+@push('css')
+    <link rel="stylesheet" href="/css/jConfirm.css">
+@endpush
 <!-- unit section -->
 <section class="course-section spad">
     <div class="container">
@@ -36,6 +39,12 @@
                                     class="btn btn-outline-dark"
                                     href="{{ route('teacher.units.edit', ["unit" => $unit]) }}">
                                     <i class="fa fa-pencil-square"></i>{{ __(" Editar") }}
+                                </a>
+                                <a
+                                    class="btn btn-outline-danger delete-record"
+                                    data-route="{{ route('teacher.units.destroy', ["unit" => $unit]) }}"
+                                    href="#">
+                                    <i class="fa fa-trash-o"></i>{{ __(" Eliminar") }}
                                 </a>
                             </td>
                         </tr>

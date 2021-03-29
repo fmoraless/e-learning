@@ -46,6 +46,8 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
         ->name('units.edit');
     Route::put('/units/{unit}', 'TeacherController@updateUnit')
         ->name('units.update');
+    Route::delete('/units/{unit}', 'TeacherController@destroyUnit')
+        ->name('units.destroy');
 });
 
 
