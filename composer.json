@@ -16,7 +16,8 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": " 2.0",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "vinkla/hashids": "8.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

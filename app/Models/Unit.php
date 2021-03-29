@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Unit extends Model
 {
+    use Hashidable;
+
     protected $fillable = [
         "title", "content", "course_id", "user_id",
         "unit_type", "unit_time", "file", "order", "free"

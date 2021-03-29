@@ -127,6 +127,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/seld/phar-utils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/seld/jsonlint" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/hashids/hashids" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/manager" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vinkla/hashids" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
