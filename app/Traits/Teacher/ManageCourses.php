@@ -13,4 +13,17 @@ trait ManageCourses {
     public function createCourse() {
 
     }
+
+    public function editCourse(Course $course) {
+        $course->load("units");
+        $title = __("Editar curso :course", ["course" => $course->title]);
+        $textButton = __("Actualizar curso");
+        $options = ['route' => [
+            'teacher.courses.update', ['course' => $course]], 'files' => true
+        ];
+        $update = true;
+        return view(
+            'teacher.courses.edit',
+            compact('title', 'course', 'options', 'textButton', 'update'));
+    }
 }

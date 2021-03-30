@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,6 +45,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Course extends Model
 {
+    use Hashidable;
+
     protected $fillable = [
         "user_id", "title", "description",
         "picture", "price", "featured", "status"
@@ -52,6 +55,15 @@ class Course extends Model
     const PUBLISHED = 1;
     const PENDING = 2;
     const REJECTED = 3;
+
+    //Rango de precio de los cursos.
+    const prices =[
+      '9,99' => '$9,99',
+      '12,99' => '$12,99',
+      '19,99' => '$19,99',
+      '29,99' => '$29,99',
+      '49,99' => '$49,99',
+    ];
 
     public function categories() {
         return $this->belongsToMany(Category::class);
@@ -67,6 +79,10 @@ class Course extends Model
 
     public function reviews() {
         return $this->hasMany(Review::class);
+    }
+
+    public function units() {
+        return $this->hasMany(Unit::class)->orderBy("order", "asc");
     }
 
     public function imagePath() {

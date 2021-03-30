@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Course;
 use App\Models\Unit;
 use App\Models\User;
 use Hashids\Hashids;
