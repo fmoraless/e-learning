@@ -58,12 +58,22 @@ class Course extends Model
 
     //Rango de precio de los cursos.
     const prices =[
-      '9,99' => '$9,99',
-      '12,99' => '$12,99',
-      '19,99' => '$19,99',
-      '29,99' => '$29,99',
-      '49,99' => '$49,99',
+      '9.99' => '9.99',
+      '12.99' => '12.99',
+      '19.99' => '19.99',
+      '29.99' => '29.99',
+      '49.99' => '49.99',
     ];
+
+    public static function boot() {
+        parent::boot();
+        //que no se esté ejecutando desde el terminal como ej. un seed
+        if (!app()->runningInConsole()) {
+            self::saving(function ($table) {
+                $table->user_id = auth()->id();
+            });
+        }
+    }
 
     public function categories() {
         return $this->belongsToMany(Category::class);
