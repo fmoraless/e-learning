@@ -65,6 +65,10 @@ class Course extends Model
       '49.99' => '49.99',
     ];
 
+    protected $appends = [
+      "rating"
+    ];
+
     public static function boot() {
         parent::boot();
         //que no se esté ejecutando desde el terminal como ej. un seed
@@ -99,8 +103,13 @@ class Course extends Model
         return sprintf('%s/%s', '/storage/courses', $this->picture);
     }
 
+    public function getRatingAttribute() {
+        return $this->reviews->avg('stars');
+    }
+
     public function scopeFiltered(Builder $builder){
         $builder->with("teacher");
+        $builder->withCount("students");
         $builder->where("status", Course::PUBLISHED);
         if (session()->has('search[courses]')) {
             $builder->where('title', 'LIKE', '%' . session('search[courses]') . '%');

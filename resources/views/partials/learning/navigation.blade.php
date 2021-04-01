@@ -30,7 +30,7 @@
                 <nav class="main-menu">
                     <ul>
                         <li><a href="{{ route('welcome') }}">{{ __("Inicio") }}</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="{{ route('courses.index') }}">{{ __("Cursos") }}</a></li>
                         <li><a href="blog.html">News</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         @teacher
