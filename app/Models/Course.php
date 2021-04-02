@@ -42,6 +42,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\User $teacher
  * @method static Builder|Course filtered()
  * @method static Builder|Course forTeacher()
+ * @property-read mixed $rating
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit[] $units
+ * @property-read int|null $units_count
  */
 class Course extends Model
 {
@@ -105,6 +108,19 @@ class Course extends Model
 
     public function getRatingAttribute() {
         return $this->reviews->avg('stars');
+    }
+
+    public function totalVideoUnits() {
+        return $this->units->where("unit_type", Unit::VIDEO)->count();
+    }
+
+    public function totalFileUnits() {
+        return $this->units->where("unit_type", Unit::ZIP)->count();
+    }
+
+    public function totalTime() {
+        $minutes = $this->units->where("unit_type", Unit::VIDEO)->sum("unit_time");
+        return gmdate("H:i",$minutes*60);
     }
 
     public function scopeFiltered(Builder $builder){
