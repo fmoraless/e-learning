@@ -43,10 +43,13 @@
                     </tbody>
                     <tfoot class="bg-dark brand-text font-weight-bold">
                         <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td colspan="2">
+                                @include("partials.learning.courses.coupon_form")
+                            </td>
                             <td>
-                                {{ __("Total :total", ["total" => $cart->totalAmount()]) }}
+                                <div class="pt-2" style="font-size: 25px">
+                                    {{ __("Total :total", ["total" => $cart->totalAmount()]) }}
+                                </div>
                             </td>
                         </tr>
                     </tfoot>

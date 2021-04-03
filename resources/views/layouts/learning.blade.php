@@ -37,6 +37,8 @@
 
 @yield('hero')
 
+@component('components.alert-component')@endcomponent
+
 @yield('content')
 
 @include('partials.learning.footer')

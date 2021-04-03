@@ -67,6 +67,12 @@ Route::get('/cart', 'StudentController@showCart')
 Route::get('/remove-course-from-cart/{course}', 'StudentController@removeCourseFromCart')
     ->name('remove_course_from_cart');
 
+/**
+ * COUPON ROUTES
+ */
+Route::post('/apply-coupon', 'StudentController@applyCoupon')
+    ->name('apply_coupon');
+
 
 /*Route::get('/phpinfo', function () {
     phpinfo();
