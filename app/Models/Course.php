@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed $rating
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit[] $units
  * @property-read int|null $units_count
+ * @property-read mixed $formatted_price
  */
 class Course extends Model
 {
