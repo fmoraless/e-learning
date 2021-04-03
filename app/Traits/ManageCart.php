@@ -16,4 +16,11 @@ trait ManageCart {
         session()->flash("message", ["success", __("Curso añadido al carrito correctamente.")]);
         return redirect(route('cart'));
     }
+
+    public function removeCourseFromCart(Course $course) {
+        $cart = new Cart;
+        $cart->removeCourse($course->id);
+        session()->flash("message", ["success", __("Curso eliminado del carrito correctamente.")]);
+        return back();
+    }
 }

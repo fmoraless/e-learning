@@ -24,7 +24,7 @@
                                 <td>{{ $course->title }}</td>
                                 <td>{{ $course->formatted_price }}</td>
                                 <td>
-                                    <a href="{{ route("remove_course_to_cart", ["course" => $course]) }}"
+                                    <a href="{{ route("remove_course_from_cart", ["course" => $course]) }}"
                                         class="btn btn-outline-danger"
                                     >
                                         {{ __("Eliminar") }}

@@ -64,8 +64,8 @@ Route::get('/add-course-to-cart/{course}', 'StudentController@addCourseToCart')
     ->name('add_course_to_cart');
 Route::get('/cart', 'StudentController@showCart')
     ->name('cart');
-Route::get('/remove-course-to-cart/{course}', 'StudentController@removeCourseToCart')
-    ->name('remove_course_to_cart');
+Route::get('/remove-course-from-cart/{course}', 'StudentController@removeCourseFromCart')
+    ->name('remove_course_from_cart');
 
 
 /*Route::get('/phpinfo', function () {
