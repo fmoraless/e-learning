@@ -25,8 +25,9 @@
         </div>
     </div>
     <div class="card-footer">
-        <a href="{{ route("add_course_to_cart", ["course" => $course]) }}" class="site-btn btn-block">
+<!--        <a href="{{ route("add_course_to_cart", ["course" => $course]) }}" class="site-btn btn-block">
             {{ __("Tomar el curso") }}
-        </a>
+        </a>-->
+        @include("partials.learning.courses.purchase_button")
     </div>
 </div>
