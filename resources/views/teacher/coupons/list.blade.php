@@ -41,14 +41,14 @@
                                         class="btn btn-outline-dark"
                                         href="{{route("teacher.coupons.edit", ["coupon" => $coupon]) }}"
                                     >
-                                        <i class="fa fa-pencil-square">{{ __("Editar") }}</i>
+                                        <i class="fa fa-pencil-square">{{ __(" Editar") }}</i>
                                     </a>
                                     <a
                                         class="btn btn-outline-danger delete-record"
                                         data-route="{{route("teacher.coupons.destroy", ["coupon" => $coupon]) }}"
                                         href="#"
                                     >
-                                        <i class="fa fa-trash-o">{{ __("Eliminar") }}</i>
+                                        <i class="fa fa-trash-o">{{ __(" Eliminar") }}</i>
                                     </a>
                                 </td>
                             </tr>

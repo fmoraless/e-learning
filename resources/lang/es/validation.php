@@ -192,5 +192,8 @@ return [
         'unit_time'             => 'duración de la unidad',
         'unit_type'             => 'tipo de unidad',
         'file'                  => 'archivo',
+        'courses'               => 'cursos',
+        'code'                  => 'código',
+        'discount'              => 'descuento',
     ],
 ];
