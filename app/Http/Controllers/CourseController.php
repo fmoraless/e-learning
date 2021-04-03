@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Currency;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class CourseController extends Controller
 
     public function show(Course $course) {
         $course->load("units", "students", "reviews");
-        //dd($course);
+        /*$amount = 12.5;
+        dd(Currency::formatCurrency($amount));*/
         return view('learning.courses.show', compact('course'));
     }
 }
