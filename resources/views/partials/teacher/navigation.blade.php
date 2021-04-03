@@ -11,7 +11,7 @@
                 <a class="nav-link brand-text" href="{{ route('teacher.units') }}">{{ __("Unidades") }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link brand-text" href="#">{{ __("Cupones") }}</a>
+                <a class="nav-link brand-text" href="{{ route('teacher.coupons') }}">{{ __("Cupones") }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link brand-text" href="#">{{ __("Alumnos") }}</a>

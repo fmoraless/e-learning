@@ -55,6 +55,22 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
         ->name('units.update');
     Route::delete('/units/{unit}', 'TeacherController@destroyUnit')
         ->name('units.destroy');
+
+    /**
+     * COUPON ROUTES
+     */
+    Route::get('/coupons', 'TeacherController@coupons')
+        ->name('coupons');
+    Route::get('/coupons/create', 'TeacherController@createCoupon')
+        ->name('coupons.create');
+    Route::post('/coupons/store', 'TeacherController@storeCoupon')
+        ->name('coupons.store');
+    Route::get('/coupons/{coupon}', 'TeacherController@editCoupon')
+        ->name('coupons.edit');
+    Route::put('/coupons/{coupon}', 'TeacherController@updateCoupon')
+        ->name('coupons.update');
+    Route::delete('/coupons/{coupon}', 'TeacherController@destroyCoupon')
+        ->name('coupons.destroy');
 });
 
 /**
