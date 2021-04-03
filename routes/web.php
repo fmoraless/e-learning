@@ -57,11 +57,15 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
         ->name('units.destroy');
 });
 
-
+/**
+ * CART ROUTES
+ */
 Route::get('/add-course-to-cart/{course}', 'StudentController@addCourseToCart')
     ->name('add_course_to_cart');
 Route::get('/cart', 'StudentController@showCart')
     ->name('cart');
+Route::get('/remove-course-to-cart/{course}', 'StudentController@removeCourseToCart')
+    ->name('remove_course_to_cart');
 
 
 /*Route::get('/phpinfo', function () {
