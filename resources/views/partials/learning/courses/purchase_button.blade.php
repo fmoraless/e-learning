@@ -7,7 +7,7 @@
     @can("purchaseCourse", $course)
         <a href="{{ route("add_course_to_cart", ["course" => $course]) }}"
             class="site-btn btn-block">
-            {{ __("Tomar el curso por :price", ["price" => \App\Helpers\Currency::formatCurrency($course->price)]) }}
+            {{ __("Tomar el curso por :price", ["price" => $course->formatted_price]) }}
         </a>
     @else
         <a href="#"

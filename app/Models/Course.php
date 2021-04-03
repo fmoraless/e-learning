@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Currency;
 use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -69,7 +70,7 @@ class Course extends Model
     ];
 
     protected $appends = [
-      "rating"
+      "rating", "formatted_price"
     ];
 
     public static function boot() {
@@ -108,6 +109,10 @@ class Course extends Model
 
     public function getRatingAttribute() {
         return $this->reviews->avg('stars');
+    }
+
+    public function getFormattedPriceAttribute() {
+        return Currency::formatCurrency($this->price);
     }
 
     public function totalVideoUnits() {
