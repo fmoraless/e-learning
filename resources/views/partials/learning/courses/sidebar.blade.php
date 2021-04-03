@@ -25,6 +25,8 @@
         </div>
     </div>
     <div class="card-footer">
-        <a href="#" class="site-btn btn-block">{{ __("Tomar el curso") }}</a>
+        <a href="{{ route("add_course_to_cart", ["course" => $course]) }}" class="site-btn btn-block">
+            {{ __("Tomar el curso") }}
+        </a>
     </div>
 </div>

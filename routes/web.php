@@ -58,6 +58,10 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
 });
 
 
+Route::get('/add-course-to-cart/{course}', 'StudentController@addCourseToCart')
+    ->name('add_course_to_cart');
+Route::get('/cart', 'StudentController@showCart')
+    ->name('cart');
 
 
 /*Route::get('/phpinfo', function () {
