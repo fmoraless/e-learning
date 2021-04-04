@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
@@ -41,6 +43,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Coupon extends Model
 {
+    use SoftDeletes, Hashidable;
+
     const PERCENT = 'PERCENT';
     const PRICE = 'PRICE';
 

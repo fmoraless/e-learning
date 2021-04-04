@@ -9,6 +9,7 @@
  * @see https://github.com/vinkla/laravel-hashids
  */
 
+use App\Models\Coupon;
 use App\Models\Course;
 use App\Models\Unit;
 use App\Models\User;
@@ -53,6 +54,10 @@ return [
         Unit::class => [
             'salt' => Unit::class.'c91a52c63222c1080a104b21f3331a60',
             'length' => 12,
+        ],
+        Coupon::class => [
+            'salt' => Coupon::class.'169c2a908fe5a90a03e9992002a90fc8',
+            'length' => 6,
         ],
     ],
 
