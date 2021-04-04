@@ -14,7 +14,7 @@ class TeacherController extends Controller
     use ManageCourses, ManageUnits, ManageCoupons;
 
     public function index() {
-        return view('teacher.index', compact('coupons'));
+        return view('teacher.index');
     }
 
 
