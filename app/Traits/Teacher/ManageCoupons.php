@@ -69,7 +69,16 @@ trait ManageCoupons {
         }
     }
 
-    public function couponInput(): array {
+    public function destroyCoupon(Coupon $coupon) {
+        if (request()->ajax()) {
+            $coupon->delete();
+            session()->flash("message", ["success", __("El cupón :code ha sido eliminado correctamente", [
+                "code" => $coupon->code
+            ])]);
+        }
+    }
+
+    protected function couponInput(): array {
         return request()->only(
             "code",
             "description",
