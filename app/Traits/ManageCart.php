@@ -26,15 +26,29 @@ trait ManageCart {
     }
 
     public function applyCoupon() {
+        session()->remove("coupon");
+        session()->save();
         $code = request("coupon");
-        $coupon = Coupon::whereCode($code)->first();
+        $coupon = Coupon::abailable($code)->first();
         if (!$coupon) {
             session()->flash("message",
                 ["danger", __("El código de cupón introducido no es válido para este curso.")]);
-        }else {
-            session()->flash("message",
-                ["success", __("El código de cupón :code se ha aplicado correctamente.", ["code" => $code])]);
+            return back();
         }
+
+        $cart = new Cart;
+        $coursesInCart = $cart->getContent()->pluck("id");
+        //Validar si los cursos que estan en el carro aplican para este cupon
+        $totalCourses = $coupon->courses()->whereIn("id", $coursesInCart)->count();
+        //dd($totalCourses);
+
+        if ($totalCourses) {
+            session()->put("coupon", $code);
+            session()->save();
+            session()->flash("message", ["success", __("El cupón se ha aplicado correctamente.")]);
+            return back();
+        }
+        session()->flash("message", ["danger", __("El cupón no se ha aplicado.")]);
         return back();
     }
 }

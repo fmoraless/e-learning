@@ -40,6 +40,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course[] $courses
  * @property-read int|null $courses_count
  * @method static Builder|Coupon forTeacher()
+ * @method static Builder|Coupon abailable(string $code)
+ * @method static \Illuminate\Database\Query\Builder|Coupon onlyTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Coupon withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Coupon withoutTrashed()
  */
 class Coupon extends Model
 {
@@ -75,6 +79,14 @@ class Coupon extends Model
         return $builder
             ->where("user_id", auth()->id())
             ->paginate();
+    }
+
+    public function scopeAbailable(Builder $builder, string $code) {
+        return $builder
+            ->where("enabled", true)
+            ->where("code", $code)
+            ->where('expires_at', '>=', now())
+            ->orWhereNull('expires_at');
     }
 
     public static function discountTypes() {
