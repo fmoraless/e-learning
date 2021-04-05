@@ -90,6 +90,10 @@ Route::post('/apply-coupon', 'StudentController@applyCoupon')
     ->name('apply_coupon');
 
 
+Route::group(["middleware" => ["auth"]], function () {
+   Route::get('/checkout', 'CheckoutController@index')
+       ->name('checkout-form') ;
+});
 /*Route::get('/phpinfo', function () {
     phpinfo();
 });*/
