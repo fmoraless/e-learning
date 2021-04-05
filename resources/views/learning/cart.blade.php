@@ -52,6 +52,16 @@
                                 </div>
                             </td>
                         </tr>
+                    @if(session()->has("coupon"))
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                            <td>
+                                <div class="pt-2" style="font-size: 25px">
+                                    {{ __("Con descuento total :total", ["total" => $cart->totalAmountWithDiscount()]) }}
+                                </div>
+                            </td>
+                        </tr>
+                    @endif
                     </tfoot>
                 </table>
             </div>
