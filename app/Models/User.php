@@ -75,4 +75,12 @@ class User extends Authenticatable
     public function isTeacher() {
         return $this->role === User::TEACHER;
     }
+
+    public function courses_learning() {
+        return $this->belongsToMany(Course::class, "course_student");
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }

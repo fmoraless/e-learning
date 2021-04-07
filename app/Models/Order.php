@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Currency;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,6 +31,33 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
+    protected $guarded = ["id"];
+
     const SUCCESS = 'SUCCESS';
     const PENDING = 'PENDING';
+
+    protected $appends = [
+        "formatted_total_amount",
+        "formatted_status"
+    ];
+
+    public function orderLines() {
+        return $this->hasMany(OrderLine::class);
+    }
+
+    public function coupon() {
+        return $this->belongsTo(Coupon::class);
+    }
+
+    public function getTotalAmountAttribute() {
+        if ($this->total_amount) {
+            return Currency::formatCurrency($this->total_amount, true);
+        }
+        return Currency::formatCurrency(0);
+    }
+
+    public function getFormattedStatusAttribute() {
+        return $this->status === self::SUCCESS ? __("Procesado") : __("Pendiente");
+    }
+
 }
