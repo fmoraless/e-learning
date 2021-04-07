@@ -18,6 +18,11 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
+Route::post(
+    'stripe/webhook',
+    'StripeWebHookController@handleWebHook'
+);
+
 Route::group(['prefix' => 'courses', 'as' => 'courses.' ], function() {
     Route::get('/', 'CourseController@index')->name('index');
     Route::post('/search', 'CourseController@search')->name('search');
