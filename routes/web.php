@@ -79,6 +79,14 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
 });
 
 /**
+ * STUDENT ROUTES
+ */
+Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth']], function() {
+    Route::get('/', 'StudentController@index')->name('index');
+});
+
+
+/**
  * CART ROUTES
  */
 Route::get('/add-course-to-cart/{course}', 'StudentController@addCourseToCart')
