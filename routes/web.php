@@ -111,6 +111,8 @@ Route::post('/apply-coupon', 'StudentController@applyCoupon')
 Route::group(["middleware" => ["auth"]], function () {
    Route::get('/checkout', 'CheckoutController@index')
        ->name('checkout-form') ;
+    Route::post('/checkout', 'CheckoutController@processOrder')
+        ->name('process_checkout') ;
 });
 /*Route::get('/phpinfo', function () {
     phpinfo();

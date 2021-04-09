@@ -26,5 +26,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OrderLine extends Model
 {
-    //
+    protected $fillable = [
+      "course_id", "order_id", "price"
+    ];
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }
