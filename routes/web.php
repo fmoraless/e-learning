@@ -83,6 +83,11 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
  */
 Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth']], function() {
     Route::get('/', 'StudentController@index')->name('index');
+
+    Route::get("/credit-card", "BillingController@creditCardForm")
+    ->name("billing.credit_card_form");
+    Route::post('/credit-card', "BillingController@processCreditCardForm")
+    ->name("billing.process_credit_card");
 });
 
 

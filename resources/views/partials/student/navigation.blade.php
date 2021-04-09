@@ -11,7 +11,7 @@
                 <a class="nav-link text-white" href="#">{{ __("Facturas") }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">{{ __("Datos de pago") }}</a>
+                <a class="nav-link text-white" href="{{ route('student.billing.credit_card_form') }}">{{ __("Datos de pago") }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">{{ __("Valoraciones") }}</a>
