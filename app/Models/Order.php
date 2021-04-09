@@ -49,7 +49,7 @@ class Order extends Model
         return $this->belongsTo(Coupon::class);
     }
 
-    public function getTotalAmountAttribute() {
+    public function getFormattedTotalAmountAttribute() {
         if ($this->total_amount) {
             return Currency::formatCurrency($this->total_amount, true);
         }
