@@ -8,6 +8,7 @@ use App\Models\OrderLine;
 use App\Services\Cart;
 use Illuminate\Http\Request;
 use DB;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 class CheckoutController extends Controller
@@ -25,12 +26,12 @@ class CheckoutController extends Controller
 
         $order = null;
 
-        try{
+        try {
             DB::beginTransaction();
 
             $cart = new Cart;
             if (!$cart->hasProducts()) {
-                return back()->with("message", ["danger", __("No hay productos para procesar.")]) ;
+                return back()->with("message", ["danger", __("No hay productos para procesar.")]);
             }
 
             $order = new Order;
@@ -49,28 +50,32 @@ class CheckoutController extends Controller
             $orderLines = [];
             foreach ($cart->getContent() as $course) {
                 $orderLines[] = [
-                  "course_id"   => $course->id,
-                  "order_id"    => $order->id,
-                  "price"       => $course->price,
-                  "created_at"  => now()
+                    "course_id" => $course->id,
+                    "order_id" => $order->id,
+                    "price" => $course->price,
+                    "created_at" => now()
                 ];
             }
             OrderLine::insert($orderLines);
 
             DB::commit();
 
-            auth()->user()->invoiceFor(__("Compra de cursos"), $order->total_amount *100, [], [
-               'tax_percent' => env('STRIPE_TAXES'),
+            auth()->user()->invoiceFor(__("Compra de cursos"), $order->total_amount * 100, [], [
+                'tax_percent' => env('STRIPE_TAXES'),
             ]);
 
             $cart->clearCart();
 
             return redirect(route("student.index"))
-            ->with(
-                'message',
-                ["success", __("Muchas gracias por tu pedido, ya puedes acceder a tus cursos.")]
+                ->with(
+                    'message',
+                    ["success", __("Muchas gracias por tu pedido, ya puedes acceder a tus cursos.")]
+                );
+        }catch (IncompletePayment $exception) {
+            return redirect()->route(
+              'cashier.payment',
+                [$exception->payment->id, 'redirect' => route('student.index', ["order" => $order])]
             );
-
         }catch (\Exception $exception) {
             DB::rollBack();
             return back()->with("message", ["danger", __($exception->getMessage())]) ;
