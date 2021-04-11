@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderLine wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OrderLine whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Order $order
  */
 class OrderLine extends Model
 {

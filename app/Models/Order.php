@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Coupon|null $coupon
+ * @property-read mixed $formatted_status
+ * @property-read mixed $formatted_total_amount
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderLine[] $orderLines
+ * @property-read int|null $order_lines_count
  */
 class Order extends Model
 {
