@@ -5,7 +5,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="#">{{ __("Cursos") }}</a>
+                <a class="nav-link text-white" href="{{ route('student.courses') }}">{{ __("Cursos") }}</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link text-white" href="#">{{ __("Facturas") }}</a>

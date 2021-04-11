@@ -88,6 +88,9 @@ Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth'
     ->name("billing.credit_card_form");
     Route::post('/credit-card', "BillingController@processCreditCardForm")
     ->name("billing.process_credit_card");
+
+    Route::get("/courses", "StudentController@courses")
+        ->name('courses');
 });
 
 
