@@ -11,6 +11,7 @@
 
 use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\Order;
 use App\Models\Unit;
 use App\Models\User;
 
@@ -58,6 +59,10 @@ return [
         Coupon::class => [
             'salt' => Coupon::class.'169c2a908fe5a90a03e9992002a90fc8',
             'length' => 6,
+        ],
+        Order::class => [
+            'salt' => Order::class.'a7d111409c5df4c897523b82e0d0d91e',
+            'length' => 10,
         ],
     ],
 

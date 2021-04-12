@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Currency;
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,6 +38,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
+    use Hashidable;
+
     protected $guarded = ["id"];
 
     const SUCCESS = 'SUCCESS';

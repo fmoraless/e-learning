@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Coupon;
 use App\Models\Course;
+use App\Models\Order;
 use App\Models\Unit;
 use App\Models\User;
 use Hashids\Hashids;
@@ -51,6 +52,10 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('coupon', function ($value, $route) {
             return $this->getModel(Coupon::class, $value);
+        });
+
+        Route::bind('order', function ($value, $route) {
+            return $this->getModel(Order::class, $value);
         });
     }
 
