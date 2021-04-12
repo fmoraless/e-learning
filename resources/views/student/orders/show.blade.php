@@ -42,7 +42,9 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <a href="#" class="site-btn">{{ __("Descargar factura") }}</a>
+            <a href="{{ route('student.orders.download_invoice',["order" => $order]) }}" class="site-btn">
+                {{ __("Descargar factura") }}
+            </a>
         </div>
     </div>
 </section>
