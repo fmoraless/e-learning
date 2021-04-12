@@ -10,32 +10,10 @@
             <!-- order -->
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
-                            <tr class="text-center">
-                                <th>{{ __("#ID") }}</th>
-                                <th>{{ __("Costo total") }}</th>
-                                <th>{{ __("Cupón") }}</th>
-                                <th>{{ __("Fecha de pedido") }}</th>
-                                <th>{{ __("Estado") }}</th>
-                                <th>{{ __("Numero de cursos") }}</th>
-                                <th>{{ __("Acciones") }}</th>
-                            </tr>
-                        </thead>
+                        @include('partials.student.orders.order_thead', ["detail" => false])
                         <tbody>
                             @forelse($orders as $order)
-                                <tr class="text-center">
-                                    <td>{{ $order->id }}</td>
-                                    <td>{{ $order->formatted_total_amount }}</td>
-                                    <td>{{ $order->coupon_code }}</td>
-                                    <td>{{ $order->created_at->format("d/m/Y") }}</td>
-                                    <td>{{ $order->formatted_status }}</td>
-                                    <td>{{ $order->order_lines_count }}</td>
-                                    <td>
-                                        <a class="btn btn-outline-dark" href="#">
-                                            <i class="fa fa-eye"></i>{{ __("Ver detalle") }}
-                                        </a>
-                                    </td>
-                                </tr>
+                                @include('partials.student.orders.order_row', ["detail" => false])
                             @empty
                                 <div class="text-center">
                                     <td colspan="7">
