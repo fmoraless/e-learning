@@ -51,6 +51,7 @@ use Laravel\Cashier\Billable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCardLastFour($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User processedOrders()
  */
 class User extends Authenticatable
 {
@@ -101,5 +102,13 @@ class User extends Authenticatable
 
     public function scopePurchasedCourses() {
         return $this->courses_learning()->with("categories")->paginate();
+    }
+
+    public function scopeProcessedOrders() {
+        return $this->orders()
+            ->where("status", Order::SUCCESS)
+            ->with("order_lines", "coupon")
+            ->withCount("order_lines")
+            ->paginate();
     }
 }

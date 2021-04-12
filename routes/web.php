@@ -91,6 +91,9 @@ Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth'
 
     Route::get("/courses", "StudentController@courses")
         ->name('courses');
+
+    Route::get("/orders", "StudentController@orders")
+        ->name('orders');
 });
 
 
