@@ -29,4 +29,9 @@ class CourseController extends Controller
         dd(Currency::formatCurrency($amount));*/
         return view('learning.courses.show', compact('course'));
     }
+
+    public function learn(Course $course) {
+        $course->load("units");
+        return view('learning.courses.learn', compact('course'));
+    }
 }

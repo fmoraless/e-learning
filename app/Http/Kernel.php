@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CanAccessToCourseMiddleware;
 use App\Http\Middleware\TeacherMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'teacher' => TeacherMiddleware::class,
+        'can_access_to_course' => CanAccessToCourseMiddleware::class,
     ];
 }
