@@ -10,7 +10,7 @@
             {{ __("Tomar el curso por :price", ["price" => $course->formatted_price]) }}
         </a>
     @else
-        <a href="#"
+        <a href="{{ route('courses.learn', ["course" => $course]) }}"
            class="site-btn btn-block">
             {{ __("Ir al curso") }}
         </a>
