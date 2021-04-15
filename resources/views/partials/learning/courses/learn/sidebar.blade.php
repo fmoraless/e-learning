@@ -50,6 +50,7 @@
                 </div>
             @endforelse
         </div>
+        {{-- Boton para valorar curso --}}
         @can('review', $course)
             <div class="card-footer">
                 <a
