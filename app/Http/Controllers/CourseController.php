@@ -25,7 +25,7 @@ class CourseController extends Controller
     }
 
     public function show(Course $course) {
-        $course->load("units", "students", "reviews");
+        $course->load("units", "students", "reviews.author");
         /*$amount = 12.5;
         dd(Currency::formatCurrency($amount));*/
         return view('learning.courses.show', compact('course'));
