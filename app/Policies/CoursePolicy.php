@@ -25,4 +25,12 @@ class CoursePolicy
         $coursePurchased = $course->students->contains($user->id);
         return !$isTeacher && !$coursePurchased;
     }
+
+    //mostrar o no el boton para valorar el curso.
+    public function review(User $user, Course $course){
+        //Cursos que el estudiante ha comprado.
+        $coursePurchased = $course->students->contains($user->id);
+        $reviewed = $course->reviews->contains('user_id',$user->id);
+        return $coursePurchased && !$reviewed;
+    }
 }
