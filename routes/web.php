@@ -23,12 +23,20 @@ Route::post(
     'StripeWebHookController@handleWebHook'
 );
 
+/**
+ * COURSE ROUTES
+ */
 Route::group(['prefix' => 'courses', 'as' => 'courses.' ], function() {
     Route::get('/', 'CourseController@index')->name('index');
     Route::post('/search', 'CourseController@search')->name('search');
     Route::get('/{course}', 'CourseController@show')->name('show');
     Route::get('/{course}/learn', 'CourseController@learn')
         ->name('learn')->middleware("can_access_to_course");
+
+    Route::get('/{course}/review', 'CourseController@createReview')
+        ->name('reviews.create');
+    Route::post('/{course}/review', 'CourseController@storeReview')
+        ->name('reviews.store');
 });
 
 
@@ -36,7 +44,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::get('/', 'TeacherController@index')->name('index');
 
     /**
-     * COURSE ROUTES
+     * TEACHER COURSES ROUTES
      */
     Route::get('/courses', 'TeacherController@courses')->name('courses');
     Route::get('/courses/create', 'TeacherController@createCourse')
