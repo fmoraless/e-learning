@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderLine[] $orderLines
  * @property-read int|null $order_lines_count
  * @property-read string $coupon_code
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderLine[] $order_lines
  */
 class Order extends Model
 {

@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|OrderLine whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Order $order
+ * @property-read \App\Models\Course|null $course
+ * @property-read mixed $formatted_price
  */
 class OrderLine extends Model
 {
