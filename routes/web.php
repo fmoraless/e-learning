@@ -37,6 +37,9 @@ Route::group(['prefix' => 'courses', 'as' => 'courses.' ], function() {
         ->name('reviews.create');
     Route::post('/{course}/review', 'CourseController@storeReview')
         ->name('reviews.store');
+    Route::get('/category/{category}', 'CourseController@byCategory')
+        ->name('category');
+
 });
 
 
