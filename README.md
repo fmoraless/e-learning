@@ -25,15 +25,37 @@ El sistema está realizado con el Framework Laravel y cuenta con las siguientes 
 ## Base de datos
 
 - Crear Base de datos e-learning
+  - **DB_CONNECTION=** 
+  - **DB_HOST=**
+  - **DB_PORT=**
+  - **DB_DATABASE=** e-learning
+  - **DB_USERNAME=** root
+  - **DB_PASSWORD=**
 - Correr las migraciones con **php artisan migrate --seed**
 
-## STRIPE
+## Stripe
 
-- Configuración cuenta de Stripe
+- Configuración cuenta de Stripe (.env file).
+    - **STRIPE_KEY=**
+    - **STRIPE_SECRET=**
+    - **STRIPE_WEBHOOK_SECRET=**
+    - **STRIPE_TAXES=**
+    - **CASHIER_CURRENCY=**
+    - **CASHIER_CURRENCY_LOCALE=**
+    - **CASHIER_MODEL=**
 
 ## Mailtrap
 
-- Configuración cuenta de Mailtrap.
+- Configuración cuenta de Mailtrap (.env file).
+  
+  - **MAIL_MAILER=**
+  - **MAIL_HOST=**
+  - **MAIL_PORT=**
+  - **MAIL_USERNAME=**
+  - **MAIL_PASSWORD=**
+  - **MAIL_ENCRYPTION=**
+  - **MAIL_FROM_ADDRESS=**
+  - **MAIL_FROM_NAME=**"${APP_NAME}"
 
 
 ## License
