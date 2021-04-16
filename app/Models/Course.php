@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $students
  * @property-read int|null $students_count
  * @property-read \App\Models\User $teacher
- * @method static Builder|Course filtered()
+ * @method static Builder|Course filtered(Category $category)
  * @method static Builder|Course forTeacher()
  * @property-read mixed $rating
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit[] $units
@@ -129,12 +129,18 @@ class Course extends Model
         return gmdate("H:i",$minutes*60);
     }
 
-    public function scopeFiltered(Builder $builder){
+    public function scopeFiltered(Builder $builder, Category $category = null){
         $builder->with("teacher");
         $builder->withCount("students");
         $builder->where("status", Course::PUBLISHED);
         if (session()->has('search[courses]')) {
             $builder->where('title', 'LIKE', '%' . session('search[courses]') . '%');
+        }
+
+        if ($category){
+            $builder->whereHas("categories", function (Builder $table) use ($category) {
+               $table->where("id", $category->id);
+            });
         }
         return $builder->paginate();
     }
