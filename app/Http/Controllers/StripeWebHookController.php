@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StudentNewOrder;
 use App\Models\Order;
 use Illuminate\Http\Response;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 use PharIo\Version\Exception;
 use Log;
@@ -28,13 +31,14 @@ class StripeWebHookController extends WebhookController
                         ->latest()
                         ->first();
                 if ($order) {
+                    $order->load("order_lines.course");
                     $order->update([
                        'invoice_id' => $invoice_id,
                        'status'     => Order::SUCCESS
                     ]);
 
                     //ATTACH COURSES FOR USER
-                    $coursesId = $order->orderLines()->pluck("course_id");
+                    $coursesId = $order->order_lines()->pluck("course_id");
                     Log::info(json_encode($coursesId));
                     $user->courses_learning()->attach($coursesId);
 
@@ -42,6 +46,8 @@ class StripeWebHookController extends WebhookController
                     Log::info(json_encode($user));
                     Log::info(json_encode($order));
                     Log::info("Pedido actualizado correctamente");
+
+                    Mail::to($user->email)->send(new StudentNewOrder($user, $order));
 
                     return new Response('Webhook Handled: {handleChargeSucceeded}',200);
                 }
