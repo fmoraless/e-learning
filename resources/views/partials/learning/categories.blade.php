@@ -17,6 +17,13 @@
                         <p>{{ $category->description }}</p>
                         <span>{{ __(":total cursos", ['total' => $category->courses_count]) }}</span>
                     </div>
+                    <div class="course-author">
+                        <a class="site-btn btn-block"
+                           href="{{ route("courses.category", ["category" => $category]) }}"
+                        >
+                        {{ __("Ver cursos") }}
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- categorie -->
