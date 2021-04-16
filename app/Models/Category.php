@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Hashidable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,10 +29,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
+    use Hashidable;
+
     protected $fillable = ["name", "description", "picture"];
 
     public function courses() {
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class)->where("status", Course::PUBLISHED);
     }
 
     public function imagePath() {

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Course;
 use App\Models\Order;
@@ -56,6 +57,10 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('order', function ($value, $route) {
             return $this->getModel(Order::class, $value);
+        });
+
+        Route::bind('category', function ($value, $route) {
+            return $this->getModel(Category::class, $value);
         });
     }
 

@@ -9,6 +9,7 @@
  * @see https://github.com/vinkla/laravel-hashids
  */
 
+use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Course;
 use App\Models\Order;
@@ -63,6 +64,10 @@ return [
         Order::class => [
             'salt' => Order::class.'a7d111409c5df4c897523b82e0d0d91e',
             'length' => 10,
+        ],
+        Category::class => [
+            'salt' => Category::class.'6dc29bf420a127578beaacab45f41351',
+            'length' => 8,
         ],
     ],
 
