@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\StudentNewOrder;
+use App\Mail\TeacherNewSale;
 use App\Models\Order;
 use Illuminate\Http\Response;
 use Illuminate\Mail\Mailable;
@@ -31,7 +32,7 @@ class StripeWebHookController extends WebhookController
                         ->latest()
                         ->first();
                 if ($order) {
-                    $order->load("order_lines.course");
+                    $order->load("order_lines.course.teacher");
                     $order->update([
                        'invoice_id' => $invoice_id,
                        'status'     => Order::SUCCESS
@@ -48,6 +49,16 @@ class StripeWebHookController extends WebhookController
                     Log::info("Pedido actualizado correctamente");
 
                     Mail::to($user->email)->send(new StudentNewOrder($user, $order));
+
+                    foreach($order->order_lines as $order_line) {
+                        Mail::to($order_line->course->teacher->email)->send(
+                            new TeacherNewSale(
+                                $order_line->course->teacher,
+                                $user,
+                                $order_line->course
+                            )
+                        );
+                    }
 
                     return new Response('Webhook Handled: {handleChargeSucceeded}',200);
                 }
