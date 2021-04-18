@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\StudentNewOrder;
-use App\Mail\TeacherNewSale;
+
 use App\Models\Order;
 use Illuminate\Http\Response;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Cashier\Http\Controllers\WebhookController;
+use App\Jobs\SendTeacherSalesEmail;
 use PharIo\Version\Exception;
 use Log;
 
@@ -51,13 +52,11 @@ class StripeWebHookController extends WebhookController
                     Mail::to($user->email)->send(new StudentNewOrder($user, $order));
 
                     foreach($order->order_lines as $order_line) {
-                        Mail::to($order_line->course->teacher->email)->send(
-                            new TeacherNewSale(
-                                $order_line->course->teacher,
-                                $user,
-                                $order_line->course
-                            )
-                        );
+                        SendTeacherSalesEmail::dispatch(
+                            $order_line->course->teacher,
+                            $user,
+                            $order_line->course
+                        )->onQueue("emails");
                     }
 
                     return new Response('Webhook Handled: {handleChargeSucceeded}',200);
