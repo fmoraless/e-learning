@@ -124,7 +124,7 @@ class Cart
      * clear cart
      *
      */
-    public function clearCart(): void {
+    public function clear(): void {
         $this->cart = new Collection;
         $this->save();
     }
