@@ -64,11 +64,11 @@ class CheckoutController extends Controller
                 'tax_percent' => env('STRIPE_TAXES'),
             ]);
 
-            $cart->clearCart();
+            $cart->clear();
 
             return redirect(route("student.index"))
                 ->with(
-                    'message',
+                    "message",
                     ["success", __("Muchas gracias por tu pedido, ya puedes acceder a tus cursos.")]
                 );
         }catch (IncompletePayment $exception) {
