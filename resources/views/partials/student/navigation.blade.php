@@ -20,7 +20,7 @@
                 <a class="nav-link text-white" href="#">{{ __("Certificados") }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">{{ __("Lista de deseos") }}</a>
+                <a class="nav-link text-white" href="{{ route('student.wishlist.me') }}">{{ __("Lista de deseos") }}</a>
             </li>
         </ul>
         <ul class="navbar-text">
