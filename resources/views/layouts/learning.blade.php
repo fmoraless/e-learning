@@ -7,6 +7,8 @@
     <meta name="keywords" content="webuni, education, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicon -->
     <link href="/img/favicon.ico" rel="shortcut icon"/>
 
@@ -50,6 +52,29 @@
 <script src="/js/circle-progress.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <script src="/js/main.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+       $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+       });
+
+       $(".toggle-wish").unbind().on("click", function (e) {
+           const self = $(this);
+           const route = $(this).data("route");
+           //console.log(route);
+           jQuery.ajax({
+               method: "PUT",
+               url: route,
+               success: function () {
+                   self.toggleClass("text-danger");
+               }
+           })
+       })
+    });
+</script>
 
 @stack('js')
 </body>
