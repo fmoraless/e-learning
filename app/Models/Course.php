@@ -47,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit[] $units
  * @property-read int|null $units_count
  * @property-read mixed $formatted_price
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\WishList[] $wishlists
+ * @property-read int|null $wishlists_count
  */
 class Course extends Model
 {
@@ -104,6 +106,18 @@ class Course extends Model
         return $this->hasMany(Unit::class)->orderBy("order", "asc");
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany(WishList::class);
+    }
+
+    public function wishedForUser()
+    {
+        return $this->wishlists
+            ->where("course_id", $this->id)
+            ->count();
+    }
+
     public function imagePath() {
         return sprintf('%s/%s', '/storage/courses', $this->picture);
     }
@@ -130,7 +144,7 @@ class Course extends Model
     }
 
     public function scopeFiltered(Builder $builder, Category $category = null){
-        $builder->with("teacher");
+        $builder->with("teacher", "categories", "wishlists");
         $builder->withCount("students");
         $builder->where("status", Course::PUBLISHED);
         if (session()->has('search[courses]')) {
