@@ -114,6 +114,9 @@ Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth'
         ->name('orders.show');
     Route::get("/orders/{order}/download_invoice", "StudentController@downloadInvoice")
         ->name('orders.download_invoice');
+
+    Route::put('/wishlist/{course}/toggle', 'StudentController@toggleItemOnWishlist')
+        ->name('wishlist.toggle');
 });
 
 
