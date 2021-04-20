@@ -1924,3 +1924,10 @@ ol {
     font-weight: 500;
     margin-bottom: 20px;
 }
+
+.wish-heart {
+    position: absolute;
+    top: 230px;
+    right: 25px;
+    cursor: pointer;
+}
