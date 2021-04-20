@@ -117,6 +117,11 @@ Route::group(['prefix' => 'student', 'as' => 'student.', 'middleware' => ['auth'
 
     Route::put('/wishlist/{course}/toggle', 'StudentController@toggleItemOnWishlist')
         ->name('wishlist.toggle');
+
+    Route::get('/wishlists', 'StudentController@meWishlist')
+        ->name('wishlist.me');
+    Route::get('/wishlists/{id}/destroy', 'StudentController@destroyWishlistItem')
+        ->name('wishlist.destroy');
 });
 
 
