@@ -23,7 +23,7 @@
                                 <div class="students">{{ __(":count Estudiantes", ['count' => $course->students_count]) }}</div>
                             </div>
                             <div class="course-author">
-                                <a href="{{ route("teacher.courses.update", ["course" => $course]) }}">
+                                <a href="{{ route("teacher.courses.edit", ["course" => $course]) }}">
                                     {{ __("Gestionar curso") }}
                                 </a>
                             </div>
