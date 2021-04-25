@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\RouteResource;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,7 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     /**
      * TEACHER COURSES ROUTES
      */
-    Route::get('/courses', 'TeacherController@courses')->name('courses');
+    /*Route::get('/courses', 'TeacherController@courses')->name('courses');
     Route::get('/courses/create', 'TeacherController@createCourse')
         ->name('courses.create');
     Route::post('/courses/store', 'TeacherController@storeCourse')
@@ -57,12 +58,18 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::get('/courses/{course}', 'TeacherController@editCourse')
         ->name('courses.edit');
     Route::put('/courses/{course}', 'TeacherController@updateCourse')
-        ->name('courses.update');
+        ->name('courses.update');*/
+    (new RouteResource([
+        "controller" => "TeacherController",
+        "path" => "courses",
+        "routes" => ["index", "create", "store", "edit", "update"]
+    ]))->generator();
+
 
     /**
      * UNIT ROUTES
      */
-    Route::get('/units', 'TeacherController@units')->name('units');
+    /*Route::get('/units', 'TeacherController@units')->name('units');
     Route::get('/units/create', 'TeacherController@createUnit')
         ->name('units.create');
     Route::post('/units/store', 'TeacherController@storeUnit')
@@ -72,12 +79,17 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::put('/units/{unit}', 'TeacherController@updateUnit')
         ->name('units.update');
     Route::delete('/units/{unit}', 'TeacherController@destroyUnit')
-        ->name('units.destroy');
+        ->name('units.destroy');*/
+    (new RouteResource([
+        "controller" => "TeacherController",
+        "path" => "units",
+        "routes" => ["index", "create", "store", "edit", "update","destroy"]
+    ]))->generator();
 
     /**
      * COUPON ROUTES
      */
-    Route::get('/coupons', 'TeacherController@coupons')
+    /*Route::get('/coupons', 'TeacherController@coupons')
         ->name('coupons');
     Route::get('/coupons/create', 'TeacherController@createCoupon')
         ->name('coupons.create');
@@ -88,7 +100,12 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
     Route::put('/coupons/{coupon}', 'TeacherController@updateCoupon')
         ->name('coupons.update');
     Route::delete('/coupons/{coupon}', 'TeacherController@destroyCoupon')
-        ->name('coupons.destroy');
+        ->name('coupons.destroy');*/
+    (new RouteResource([
+        "controller" => "TeacherController",
+        "path" => "coupons",
+        "routes" => ["index", "create", "store", "edit", "update","destroy"]
+    ]))->generator();
 });
 
 /**
