@@ -18,7 +18,7 @@ class CreateCouponsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('code')->unique();
+            $table->string('code');
             $table->string('description');
             $table->enum('discount_type', [
                 Coupon::PERCENT, Coupon::PRICE
