@@ -23,7 +23,7 @@
                 <a class="nav-link brand-text" href="#">{{ __("Promociones") }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link brand-text" href="#">{{ __("Ganancias") }}</a>
+                <a class="nav-link brand-text" href="{{ route('teacher.profits') }}">{{ __("Ganancias") }}</a>
             </li>
         </ul>
         <ul class="navbar-text">
