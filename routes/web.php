@@ -106,6 +106,15 @@ Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'middleware' => ['teach
         "path" => "coupons",
         "routes" => ["index", "create", "store", "edit", "update","destroy"]
     ]))->generator();
+
+    /**
+     * CHARTS ROUTES
+     */
+    (new RouteResource([
+        "controller" => "TeacherController",
+        "path" => "profits",
+        "routes" => ["index"]
+    ]))->generator();
 });
 
 /**
