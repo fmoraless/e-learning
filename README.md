@@ -20,18 +20,30 @@ El sistema está realizado con el Framework Laravel y cuenta con las siguientes 
 - Clonar repositorio desde https://github.com/fmoraless/e-learning.git
 - **composer update**
 
-
+## .env
+Abrir .env.example unicado en la raiz del proyecto y guardar como .env
 
 ## Base de datos
 
 - Crear Base de datos e-learning
+- Generar APP_KEY , comando: 
+    ``` 
+        php artisan key:generate
+    ```
+
+#### Establecer parametros de conexión a la BD
   - **DB_CONNECTION=** 
   - **DB_HOST=**
   - **DB_PORT=**
   - **DB_DATABASE=** e-learning
   - **DB_USERNAME=** root
   - **DB_PASSWORD=**
-- Correr las migraciones con **php artisan migrate --seed**
+
+- Ejecutar las migraciones con:
+    ``` 
+        php artisan migrate --seed
+    ```
+ 
 
 ## Stripe
 
